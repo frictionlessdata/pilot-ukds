@@ -3,4 +3,4 @@
 datapacakge_pipelines_ukds.egg-info/
 tests/
 .dpp.db
-
+.datahub.json
