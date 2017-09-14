@@ -27,6 +27,8 @@ def _make_title_from_identifier(identifier):
     source_scheme, _ = detect_scheme_and_format(identifier)
     if source_scheme in ['http', 'https', 'file']:
         title = urllib.parse.unquote(os.path.basename(identifier))
+        if title == '':
+            title = identifier
     else:
         title = identifier
     return title

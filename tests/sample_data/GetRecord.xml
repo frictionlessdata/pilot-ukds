@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+    <responseDate>2013-02-27T10:07:54Z</responseDate>
+    <request identifier="oai:test.example.com:1996652" metadataPrefix="oai_dc" verb="GetRecord">
+        http://test.example.com/oai
+    </request>
+    <GetRecord>
+        <record xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <header>
+                <identifier>oai:reshare.ukdataservice.ac.uk:851500</identifier>
+                <datestamp>2016-05-12T14:53:26Z</datestamp>
+                <setSpec>74797065733D646174615F636F6C6C656374696F6E</setSpec>
+            </header>
+            <metadata>
+                <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+                    <dc:title>Farm Management Survey- SPSS data set</dc:title>
+                    <dc:creator>Winter, Michael</dc:creator>
+                    <dc:subject>Environment, conservation and land use</dc:subject>
+                    <dc:subject>History</dc:subject>
+                    <dc:subject>Economics</dc:subject>
+                    <dc:subject>Industry and management</dc:subject>
+                    <dc:description>A description of the data set...</dc:description>
+                    <dc:publisher>UK Data Archive</dc:publisher>
+                    <dc:type>Data Collection</dc:type>
+                    <dc:type>NonPeerReviewed</dc:type>
+                    <dc:format>other</dc:format>
+                    <dc:identifier>http://reshare.ukdataservice.ac.uk/851500/1/RES-062-23-1831%20SPSS%20data%20handbook.xlsx</dc:identifier>
+                    <dc:format>other</dc:format>
+                    <dc:identifier>http://reshare.ukdataservice.ac.uk/851500/2/RES-062-23-1831%20FBS%20data%20for%20ESRC%20archive.sav</dc:identifier>
+                    <dc:format>other</dc:format>
+                    <dc:identifier>http://reshare.ukdataservice.ac.uk/851500/3/nofile/</dc:identifier>
+                    <dc:format>other</dc:format>
+                    <dc:identifier>unknown://notapath</dc:identifier>
+                    <dc:identifier>  Winter, Michael   Farm Management Survey- SPSS data set.  [Data Collection]   [error in script]  </dc:identifier>
+                    <dc:relation>http://reshare.ukdataservice.ac.uk/851500/</dc:relation>
+                </oai_dc:dc>
+            </metadata>
+        </record>
+    </GetRecord>
+</OAI-PMH>

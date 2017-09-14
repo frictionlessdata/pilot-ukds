@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+    <responseDate>2013-02-27T10:01:15Z</responseDate>
+    <request verb="Identify">http://test.example.com/oai</request>
+        <Identify xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <repositoryName>ReShare</repositoryName>
+            <baseURL>http://reshare.ukdataservice.ac.uk/cgi/oai2</baseURL>
+            <protocolVersion>2.0</protocolVersion>
+            <adminEmail>reshare@example.com</adminEmail>
+            <earliestDatestamp>2015-01-07T10:46:32Z</earliestDatestamp>
+            <deletedRecord>persistent</deletedRecord>
+            <granularity>YYYY-MM-DDThh:mm:ssZ</granularity>
+            <description>
+                <oai-identifier xmlns="http://www.openarchives.org/OAI/2.0/oai-identifier" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai-identifier http://www.openarchives.org/OAI/2.0/oai-identifier.xsd">
+                    <scheme>oai</scheme>
+                    <repositoryIdentifier>reshare.ukdataservice.ac.uk</repositoryIdentifier>
+                    <delimiter>:</delimiter>
+                    <sampleIdentifier>oai:reshare.ukdataservice.ac.uk:850187</sampleIdentifier>
+                </oai-identifier>
+            </description>
+            <description>
+                <eprints xmlns="http://www.openarchives.org/OAI/1.1/eprints" xsi:schemaLocation="http://www.openarchives.org/OAI/1.1/eprints http://www.openarchives.org/OAI/1.1/eprints.xsd">
+                    <content>
+                        <URL>http://reshare.ukdataservice.ac.uk/policies.html</URL>
+                    </content>
+                    <metadataPolicy><text>No metadata policy defined. \nThis server has not yet been fully configured.\nPlease contact the admin for more information, but if in doubt assume that\nNO rights at all are granted to this data.\n</text></metadataPolicy>
+                    <dataPolicy><text>No data policy defined. \nThis server has not yet been fully configured.\nPlease contact the admin for more information, but if in doubt assume that\nNO rights at all are granted to this data.\n</text></dataPolicy>
+                    <submissionPolicy><text>No submission-data policy defined. \nThis server has not yet been fully configured.\n</text></submissionPolicy>
+                    <comment>This system is running eprints server software (EPrints 3.3.11) developed at the University of Southampton. For more information see http://www.eprints.org/</comment>
+                </eprints>
+            </description>
+        </Identify>
+</OAI-PMH>
+
+
+<Identify xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <repositoryName>ReShare</repositoryName>
+    <baseURL>http://reshare.ukdataservice.ac.uk/cgi/oai2</baseURL>
+    <protocolVersion>2.0</protocolVersion>
+    <adminEmail>reshare@example.com</adminEmail>
+    <earliestDatestamp>2015-01-07T10:46:32Z</earliestDatestamp>
+    <deletedRecord>persistent</deletedRecord>
+    <granularity>YYYY-MM-DDThh:mm:ssZ</granularity>
+    <description>
+        <oai-identifier xmlns="http://www.openarchives.org/OAI/2.0/oai-identifier" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai-identifier http://www.openarchives.org/OAI/2.0/oai-identifier.xsd">
+            <scheme>oai</scheme>
+            <repositoryIdentifier>reshare.ukdataservice.ac.uk</repositoryIdentifier>
+            <delimiter>:</delimiter>
+            <sampleIdentifier>oai:reshare.ukdataservice.ac.uk:850187</sampleIdentifier>
+        </oai-identifier>
+    </description>
+    <description>
+        <eprints xmlns="http://www.openarchives.org/OAI/1.1/eprints" xsi:schemaLocation="http://www.openarchives.org/OAI/1.1/eprints http://www.openarchives.org/OAI/1.1/eprints.xsd">
+            <content>
+                <URL>http://reshare.ukdataservice.ac.uk/policies.html</URL>
+            </content>
+            <metadataPolicy><text>No metadata policy defined. \nThis server has not yet been fully configured.\nPlease contact the admin for more information, but if in doubt assume that\nNO rights at all are granted to this data.\n</text></metadataPolicy>
+            <dataPolicy><text>No data policy defined. \nThis server has not yet been fully configured.\nPlease contact the admin for more information, but if in doubt assume that\nNO rights at all are granted to this data.\n</text></dataPolicy>
+            <submissionPolicy><text>No submission-data policy defined. \nThis server has not yet been fully configured.\n</text></submissionPolicy>
+            <comment>This system is running eprints server software (EPrints 3.3.11) developed at the University of Southampton. For more information see http://www.eprints.org/</comment>
+        </eprints>
+    </description>
+</Identify>

@@ -24,7 +24,7 @@ INSTALL_REQUIRES = [
 TESTS_REQUIRE = [
     'pylama',
     'tox',
-    'requests-mock'
+    'mock'
 ]
 README = read('README.md')
 VERSION = read(PACKAGE, 'VERSION')
