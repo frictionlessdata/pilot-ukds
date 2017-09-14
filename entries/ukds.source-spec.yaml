@@ -9,6 +9,7 @@ entries:
   farm:
     source: ../data/RES-062-23-1831 FBS data for ESRC archive.sav
     format: spss
+    oai-id: 851500
 
   farm-url:
     source: http://reshare.ukdataservice.ac.uk/851500/2/RES-062-23-1831%20FBS%20data%20for%20ESRC%20archive.sav

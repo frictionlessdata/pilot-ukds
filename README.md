@@ -3,79 +3,77 @@
 [![Travis](https://img.shields.io/travis/frictionlessdata/pilot-ukds/master.svg)](https://travis-ci.org/frictionlessdata/pilot-ukds)
 [![Coveralls](http://img.shields.io/coveralls/frictionlessdata/pilot-ukds.svg?branch=master)](https://coveralls.io/r/frictionlessdata/pilot-ukds?branch=master)
 
-An example [Data Package Pipeline](https://github.com/frictionlessdata/datapackage-pipelines/) to export data from UKDS, transform, validate, define visualizations, and import into datahub.io. The basic flow from the UKDS Reshare resource, to the final datahub.io entry is outlined in the diagrame below:
+An example [Data Package Pipeline](https://github.com/frictionlessdata/datapackage-pipelines/) to harvest data from UKDS, transform, validate, define visualizations, and import into datahub.io. The basic flow from the UKDS Reshare resource, to the final datahub.io entry is outlined in the diagram below:
 
 ```
-    UKDS Reshare
+                        +                                                                             +
+                        |                                                                             |
+                        |                                                                             |
+ UKDS Reshare           |  UKDS Datapackage Pipeline                                                  |  datahub.io
+                        |                                                                             |
+                        |                  +-----------------------------+                            |
+                        |                  |                             |                            |
+                        |                  |  Entry defined in pipline   |                            |
+                        |                  |  ukds.source-spec.yml       |                            |
+                        |                  |                             |                            |
+                        |                  +-------------+---------------+                            |
+                        |                                |                                            |
+                        |                 +--------------+----------------+                           |
+                        |       CSV       |                               |    SPSS                   |
+                        |                 |                               |                           |
++--------------------+  |  +--------------v--------------+  +-------------v---------------+           |
+|                    |  |  |                             |  |                             |           |
+|  UKDS open access  |  |  |  datapackage-pipelines.lib  |  |  datapackage-pipeline-spss  |           |
+|  resource file     <-----+   + add_resource            |  |   + add_spss                |           |
+|                    |  |  |   + stream_remote_resource  |  |                             |           |
++--------------------+  |  |                             |  +-------------+--+------------+           |
+                        |  +--------------+--------------+                |  |                        |
+                        |                 |                               |  +-> tableschema-spss-py  |
+                        |                 +--------------+----------------+                           |
+                        |                                |                                            |
+ +-------------------+  |                  +-------------v---------------+                            |
+ |                   |  |                  |                             |                            |
+ |  UKDS OAI Record  |  |                  |  datapackage-pipeline-ukds  |                            |
+ |  Metadata         <---------------------+   + add_oai_metadata        |                            |
+ |                   |  |                  |                             |                            |
+ +-------------------+  |                  +-------------+---------------+                            |
+                        |                                |                                            |
+                        |              +-----------------v-----------------+                          |
+                        |              |                                   |                          |
+                        |              |  datapackage-pipeline-goodtables  +-------> goodtables-py    |
+                        |              |   + validate                      |                          |
+                        |              |                                   |                          |
+                        |              +-----------------+-----------------+                          |
+                        |                                |                                            |
+                        |                +---------------v----------------+                           |
+                        |                |                                |                           |  +--------------------+
+                        |                |  datapackage-pipeline-datahub  |                           |  |                    |
+                        |                |   + dump_to.datahub            +------------------------------>  datahub.io entry  |
+                        |                |                                |                           |  |                    |
+                        |                +--------------------------------+                           |  +--------------------+
+                        +                                                                             +
 
-              +--------------------+
-              |                    |
-              |  UKDS open access  |
-              |  resource          |
-              |                    |
-              +--------------------+
-
- +-------------------------------------------------------------+
-
-    UKDS Datapackage Pipeline
-
-          +-----------------------------+
-          |                             |
-          |  datapackage-pipeline-ukds  |
-          |   - spss                    |
-          |   - csv                     |
-          |                             |
-          +--------------+--------------+
-                         |
-               +---------+---------------------+
-     CSV       |                               |    SPSS
-               |                               |
-+--------------v--------------+  +-------------v---------------+
-|                             |  |                             |
-|  datapackage-pipelines.lib  |  |  datapackage-pipeline-spss  +-----+ tableschema-spss-py
-|   - add_resource            |  |   - add_spss                |
-|   - stream_remote_resource  |  |                             |
-|                             |  +-------------+---------------+
-+--------------+--------------+                |
-               |                               |
-               +---------+---------------------+
-                         |
-       +-----------------v-----------------+
-       |                                   |
-       |  datapackage-pipeline-goodtables  +-------+ goodtables-py
-       |   - validate                      |
-       |                                   |
-       +-----------------+-----------------+
-                         |
-                         |
-         +---------------v----------------+
-         |                                |
-         |  datapackage-pipeline-datahub  |
-         |   - dump_to.datahub            |
-         |                                |
-         +---------------+----------------+
-                         |
-+-----------------------------------------------------------------+
-                         |
-     datahub.io          |
-                         |
-              +----------v---------+
-              |                    |
-              |  datahub.io entry  |
-              |                    |
-              +--------------------+
 ```
 
-Each entry is defined in `/entries/ukds.source-spec.yaml`, in the following way:
+The source-spec is defined in `/entries/ukds.source-spec.yaml`:
 
 ```yml
-my-first-entry:  # a remote spss resource
-  source: http://reshare.ukdataservice.ac.uk/851500/2/my-spss-file.sav
-  format: spss
+oai-url:
+  http://reshare.ukdataservice.ac.uk/cgi/oai2
 
-my-second-entry:  # a local csv resource
-  source: ../data/my-csv-file.csv
-  format: csv
-  tabulator:
-    headers: 1
+entries:
+  my-first-entry:  # a remote spss resource
+    source: http://reshare.ukdataservice.ac.uk/851500/2/my-spss-file.sav
+    format: spss
+    oai-id: 851500
+
+  my-second-entry:  # a local csv resource
+    source: ../data/my-csv-file.csv
+    format: csv
+    tabulator:
+      headers: 1
 ```
+
+Where `oai-url` is the entry point for the OAI service, and `entries` is a collection of resources which we're interested in harvesting from UKDS, and uploading to datahub.io.
+
+If an entry has an `oai-id` property, this will be used to harvest dataset metadata from UKDS to populate the datapackage.
