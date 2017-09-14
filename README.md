@@ -3,7 +3,15 @@
 [![Travis](https://img.shields.io/travis/frictionlessdata/pilot-ukds/master.svg)](https://travis-ci.org/frictionlessdata/pilot-ukds)
 [![Coveralls](http://img.shields.io/coveralls/frictionlessdata/pilot-ukds.svg?branch=master)](https://coveralls.io/r/frictionlessdata/pilot-ukds?branch=master)
 
-An example [Data Package Pipeline](https://github.com/frictionlessdata/datapackage-pipelines/) to harvest data from UKDS, transform, validate, define visualizations, and import into datahub.io. The basic flow from the UKDS Reshare resource, to the final datahub.io entry is outlined in the diagram below:
+An example [Data Package Pipeline](https://github.com/frictionlessdata/datapackage-pipelines/) to harvest data from UKDS, transform, validate, define visualizations, and import into datahub.io. 
+
+As well as the pipeline, this repository maintains a pipeline processor to add [OAI-PMH](http://www.openarchives.org/OAI/openarchivesprotocol.html) dataset metadata to the datapackage: `ukds.add_oai_metadata`. 
+
+The following pipeline plugins are also used by the pipeline:
+- [datapackage-pipelines-spss](https://github.com/frictionlessdata/datapackage-pipelines-spss): `spss.add_spss`
+- [datapackage-pipelines-goodtables](https://github.com/frictionlessdata/datapackage-pipelines-goodtables): `goodtables.validate`
+
+The basic flow from the UKDS Reshare resource, to the final datahub.io entry is outlined in the diagram below:
 
 ```
                         +                                                                             +
