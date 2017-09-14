@@ -1,5 +1,34 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "type": "object"
+  "type": "object",
+  "properties": {
+    "oai-url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "entries": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string"
+          },
+          "oai-id": {
+            "type": ["string", "integer"]
+          },
+          "tabulator": {
+            "type": "object"
+          }
+        },
+        "required": ["source", "format"]
+      }
+    }
+  },
+  "required": ["oai-url", "entries"]
 }
 

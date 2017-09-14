@@ -18,7 +18,8 @@ def read(*paths):
 PACKAGE = 'datapackage_pipelines_ukds'
 NAME = PACKAGE.replace('_', '-')
 INSTALL_REQUIRES = [
-    'datapackage-pipelines'
+    'datapackage-pipelines>=1.0,<2.0',
+    'sickle<=1.0'
 ]
 TESTS_REQUIRE = [
     'pylama',

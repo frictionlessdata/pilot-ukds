@@ -14,6 +14,7 @@ from . import pipeline_steps
 import logging
 log = logging.getLogger(__name__)
 
+DOWNLOADS_PATH = os.path.join(os.path.dirname(__file__), '../output')
 SCHEMA_FILE = os.path.join(
     os.path.dirname(__file__), 'schemas/ukds_spec_schema.json')
 
@@ -47,11 +48,10 @@ class Generator(GeneratorBase):
     def generate_pipeline(cls, source):
         schedule = SCHEDULE_DAILY
 
-        oai_url = source['oai-url']
-
         for k, config in source['entries'].items():
 
             format = config['format']
+            config['oai_url'] = source['oai-url']
 
             discovered_steps = cls._get_pipeline_steps()
             pipeline_id = slugify(k)
@@ -60,13 +60,32 @@ class Generator(GeneratorBase):
 
                 common_steps = [
                     ('add_metadata', {
-                        'name': pipeline_id,
-                        'oai_url': oai_url
+                        'name': pipeline_id
                     })
                 ]
 
                 _steps = discovered_steps[format](common_steps,
                                                   pipeline_id, config)
+
+                common_post_steps = []
+
+                if 'oai-id' in config:
+                    common_post_steps.append(('ukds.add_oai_metadata', {
+                        'oai_id': config['oai-id'],
+                        'oai_url': config['oai_url']
+                    }))
+
+                common_post_steps.append(('goodtables.validate', {
+                    'fail_on_error': True,
+                    'fail_on_warn': False
+                }))
+
+                common_post_steps.append(('dump.to_path', {
+                    'out-path': '{}/{}'.format(DOWNLOADS_PATH, pipeline_id)
+                }))
+
+                _steps = _steps + common_post_steps
+
                 _steps = steps(*_steps)
             else:
                 log.warn('No {} processor available for {}'.format(
