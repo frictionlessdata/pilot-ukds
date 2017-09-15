@@ -13,19 +13,27 @@
         "type": "object",
         "properties": {
           "source": {
-            "type": "string"
-          },
-          "format": {
-            "type": "string"
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string"
+                },
+                "format": {
+                  "type": "string"
+                },
+                "tabulator": {
+                  "type": "object"
+                }
+              },
+              "required": ["url", "format"]
+            }
           },
           "oai-id": {
             "type": ["string", "integer"]
-          },
-          "tabulator": {
-            "type": "object"
           }
-        },
-        "required": ["source", "format"]
+        }
       }
     }
   },

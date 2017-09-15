@@ -7,10 +7,10 @@ label = 'csv'
 
 
 def add_steps(steps: list, pipeline_id: str, config: dict) -> list:
-    name = slugify(urllib.parse.unquote(os.path.basename(config['source'])))
+    name = slugify(urllib.parse.unquote(os.path.basename(config['url'])))
     name = name.lower()
     add_resource_options = {
-        'url': config['source'],
+        'url': config['url'],
         'format': 'csv',
         'name': name
     }

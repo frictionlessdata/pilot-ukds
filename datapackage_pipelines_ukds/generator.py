@@ -48,49 +48,52 @@ class Generator(GeneratorBase):
     def generate_pipeline(cls, source):
         schedule = SCHEDULE_DAILY
 
+        discovered_steps = cls._get_pipeline_steps()
+
         for k, config in source['entries'].items():
 
-            format = config['format']
-            config['oai_url'] = source['oai-url']
-
-            discovered_steps = cls._get_pipeline_steps()
             pipeline_id = slugify(k)
 
-            if format in discovered_steps.keys():
+            _steps = [
+                ('add_metadata', {
+                    'name': pipeline_id
+                })
+            ]
 
-                common_steps = [
-                    ('add_metadata', {
-                        'name': pipeline_id
-                    })
-                ]
+            has_resources = False
 
-                _steps = discovered_steps[format](common_steps,
-                                                  pipeline_id, config)
+            for resource in config['source']:
+                format = resource['format']
+                if format in discovered_steps.keys():
+                    _steps = discovered_steps[format](_steps,
+                                                      pipeline_id, resource)
+                    has_resources = True
+                else:
+                    log.warn('No {} processor available for {}'.format(
+                        format, pipeline_id))
 
-                common_post_steps = []
-
-                if 'oai-id' in config:
-                    common_post_steps.append(('ukds.add_oai_metadata', {
-                        'oai_id': config['oai-id'],
-                        'oai_url': config['oai_url']
-                    }))
-
-                common_post_steps.append(('goodtables.validate', {
-                    'fail_on_error': True,
-                    'fail_on_warn': False
-                }))
-
-                common_post_steps.append(('dump.to_path', {
-                    'out-path': '{}/{}'.format(DOWNLOADS_PATH, pipeline_id)
-                }))
-
-                _steps = _steps + common_post_steps
-
-                _steps = steps(*_steps)
-            else:
-                log.warn('No {} processor available for {}'.format(
-                    format, pipeline_id))
+            if not has_resources:
                 continue
+
+            _post_steps = []
+
+            if 'oai-id' in config:
+                _post_steps.append(('ukds.add_oai_metadata', {
+                    'oai_id': config['oai-id'],
+                    'oai_url': source['oai-url']
+                }))
+
+            _post_steps.append(('goodtables.validate', {
+                'fail_on_error': True,
+                'fail_on_warn': False
+            }))
+
+            _post_steps.append(('dump.to_path', {
+                'out-path': '{}/{}'.format(DOWNLOADS_PATH, pipeline_id)
+            }))
+
+            _steps = _steps + _post_steps
+            _steps = steps(*_steps)
 
             pipeline_details = {
                 'pipeline': _steps

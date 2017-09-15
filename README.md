@@ -71,15 +71,25 @@ oai-url:
 
 entries:
   my-first-entry:  # a remote spss resource
-    source: http://reshare.ukdataservice.ac.uk/851500/2/my-spss-file.sav
-    format: spss
+    source:
+      - url: http://reshare.ukdataservice.ac.uk/851500/2/my-spss-file.sav
+        format: spss
     oai-id: 851500
 
   my-second-entry:  # a local csv resource
-    source: ../data/my-csv-file.csv
-    format: csv
-    tabulator:
-      headers: 1
+    source:
+      - url: ../data/my-csv-file.csv
+        format: csv
+        tabulator:
+          headers: 1
+
+  my-multiple-item:  # multiple resources
+    source:
+      - url: ../data/Employee data.sav
+        format: spss
+      - url: ../data/invalid.csv
+        format: csv
+    oai-id: 851501
 ```
 
 Where `oai-url` is the entry point for the OAI service, and `entries` is a collection of resources which we're interested in harvesting from UKDS, and uploading to datahub.io.
