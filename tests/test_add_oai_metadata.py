@@ -45,10 +45,12 @@ class TestAddOAIMetadataProcessor(TestBase):
             'resources': [],
             'title': 'Farm Management Survey- SPSS data set',
             'description': 'A description of the data set...',
-            'contributors': [{'title': 'Winter, Michael', 'role': 'author'}],
+            'contributors': [
+                {'title': 'Winter, Michael', 'role': 'author'},
+                {'title': 'UK Data Archive', 'role': 'publisher'}
+            ],
             'homepage': 'http://reshare.ukdataservice.ac.uk/851500/',
             'keywords': ['Environment, conservation and land use', 'History', 'Economics', 'Industry and management'],  # noqa
-            'publisher': 'UK Data Archive',
             'sources': [{'title': 'RES-062-23-1831 SPSS data handbook.xlsx', 'path': 'http://reshare.ukdataservice.ac.uk/851500/1/RES-062-23-1831%20SPSS%20data%20handbook.xlsx'}, {'title': 'RES-062-23-1831 FBS data for ESRC archive.sav', 'path': 'http://reshare.ukdataservice.ac.uk/851500/2/RES-062-23-1831%20FBS%20data%20for%20ESRC%20archive.sav'}, {'title': 'http://reshare.ukdataservice.ac.uk/851500/3/nofile/', 'path': 'http://reshare.ukdataservice.ac.uk/851500/3/nofile/'}, {'title': 'unknown://notapath', 'path': 'unknown://notapath'}]  # noqa
         }
         self.assertEqual(spew_dp, expected_dp)

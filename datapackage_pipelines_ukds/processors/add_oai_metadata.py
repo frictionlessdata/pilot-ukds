@@ -34,6 +34,8 @@ def _make_title_from_identifier(identifier):
     return title
 
 
+contributors = []
+
 if 'title' in record:
     datapackage['title'] = record['title'][0]
 
@@ -41,17 +43,18 @@ if 'description' in record:
     datapackage['description'] = record['description'][0]
 
 if 'creator' in record:
-    datapackage['contributors'] = \
-        [{'title': c, 'role': 'author'} for c in record['creator']]
+    contributors += [{'title': c, 'role': 'author'}
+                     for c in record['creator']]
+
+if 'publisher' in record:
+    contributors += [{'title': c, 'role': 'publisher'}
+                     for c in record['publisher']]
 
 if 'relation' in record:
     datapackage['homepage'] = record['relation'][0]
 
 if 'subject' in record:
     datapackage['keywords'] = [kw for kw in record['subject']]
-
-if 'publisher' in record:
-    datapackage['publisher'] = record['publisher'][0]
 
 if 'identifier' in record:
     '''Discover sources from the OAI record. UKDS creates a erroneous last
@@ -60,6 +63,9 @@ if 'identifier' in record:
     datapackage['sources'] = \
         [{'title': _make_title_from_identifier(ider), 'path': ider}
          for ider in record['identifier'] if 'error in script' not in ider]
+
+if contributors:
+    datapackage['contributors'] = contributors
 
 
 spew(datapackage, res_iter)
