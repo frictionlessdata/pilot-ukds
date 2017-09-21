@@ -85,7 +85,9 @@ class Generator(GeneratorBase):
 
             _post_steps.append(('goodtables.validate', {
                 'fail_on_error': True,
-                'fail_on_warn': False
+                'reports_path':
+                    '{}/{}/{}'.format('../output', pipeline_id, 'reports'),
+                'datapackage_reports_path': 'reports'
             }))
 
             _post_steps.append(('dump.to_path', {
