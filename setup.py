@@ -19,6 +19,8 @@ PACKAGE = 'datapackage_pipelines_ukds'
 NAME = PACKAGE.replace('_', '-')
 INSTALL_REQUIRES = [
     'datapackage-pipelines>=1.0,<2.0',
+    'datapackage-pipelines-goodtables',
+    'datapackage-pipelines-spss',
     'sickle<=1.0'
 ]
 TESTS_REQUIRE = [
