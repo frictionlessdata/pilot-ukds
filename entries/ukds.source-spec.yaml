@@ -2,33 +2,14 @@ oai-url:
   http://reshare.ukdataservice.ac.uk/cgi/oai2
 
 entries:
-  my-first-item:
+  first-local-item:
     source:
       - url: ../data/Employee data.sav
         format: spss
 
-  farm:
-    source:
-      - url: ../data/RES-062-23-1831 FBS data for ESRC archive.sav
-        format: spss
-    oai-id: 851500
-
-  farm-url:
-    source:
-      - url: http://reshare.ukdataservice.ac.uk/851500/2/RES-062-23-1831%20FBS%20data%20for%20ESRC%20archive.sav
-        format: spss
-    oai-id: 851500
-
-  second-item:
+  second-local-item:
     source:
       - url: ../data/data-Employee-data-sav.csv
-        format: csv
-        tabulator:
-          headers: 1
-
-  invalid:
-    source:
-      - url: ../data/invalid.csv
         format: csv
         tabulator:
           headers: 1
@@ -40,3 +21,98 @@ entries:
       - url: ../data/invalid.csv
         format: csv
     oai-id: 851500
+
+  farm-survey:
+    source:
+      - url: http://reshare.ukdataservice.ac.uk/851500/2/RES-062-23-1831%20FBS%20data%20for%20ESRC%20archive.sav
+        format: spss
+    oai-id: 851500
+
+  humour-styles-bullying:
+    source:
+      - url: http://reshare.ukdataservice.ac.uk/850965/1/ESRCHumour_Bullying_DataSet_ESDS.sav
+        format: spss
+    oai-id: 850965
+
+  green-exercise:
+    source:
+      - url: http://reshare.ukdataservice.ac.uk/852253/1/PhysicalActivity_Greenspace.sav
+        format: spss
+    oai-id: 852253
+
+  print-coverage-psc:
+    source:
+      - url: http://reshare.ukdataservice.ac.uk/852690/2/PrintMedia.csv
+        format: csv
+        tabulator:
+          headers: 1
+    oai-id: 852690
+
+  us-petitions-tweet-mentions:
+    source:
+      - url: http://reshare.ukdataservice.ac.uk/851634/1/us_pets_tweet_ids.csv
+        format: csv
+    goodtables:
+      skip_checks:
+        - duplicate-row
+    oai-id: 851634
+
+  uk-petitions-tweet-mentions:
+    source:
+      - url: http://reshare.ukdataservice.ac.uk/851633/2/uk_pets_tweet_ids.csv
+        format: csv
+    goodtables:
+      skip_checks:
+        - duplicate-row
+    oai-id: 851633
+
+  visiting-zoos:
+    source:
+      - url: http://reshare.ukdataservice.ac.uk/852411/1/Visiting-Zoos.sav
+        format: spss
+    oai-id: 852411
+
+  # online-dating-scam:
+  #   source:
+  #     - url: http://reshare.ukdataservice.ac.uk/852403/1/Romance_data.sav
+  #       format: spss
+  #   oai-id: 852403
+
+  civil-servant-survey:
+    source:
+      - url: http://reshare.ukdataservice.ac.uk/851401/10/Coded_SurveyData.csv
+        format: csv
+      - url: http://reshare.ukdataservice.ac.uk/851401/2/key%20%283%29.csv
+        format: csv
+    goodtables:
+      skip_checks:
+        - duplicate-row
+    oai-id: 851401
+
+  change-org-petitions:
+    source:
+      - url: http://reshare.ukdataservice.ac.uk/851617/1/Change_org_petitions_metadata.tab
+        format: tsv
+        tabulator:
+          encoding: utf-8
+    oai-id: 851617
+
+  uk-gov-petitions:
+    source:
+      - url: http://reshare.ukdataservice.ac.uk/851614/1/gov_pet_metadata.tab
+        format: tsv
+        tabulator:
+          encoding: utf-8
+          headers:
+            - id
+            - title
+            - department
+            - starting
+            - closing
+    oai-id: 851614
+
+  us-gov-petitions:
+    source:
+      - url: http://reshare.ukdataservice.ac.uk/851616/2/We_the_People_petition.tab
+        format: tsv
+    oai-id: 851616
