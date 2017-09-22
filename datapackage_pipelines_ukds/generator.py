@@ -83,12 +83,16 @@ class Generator(GeneratorBase):
                     'oai_url': source['oai-url']
                 }))
 
-            _post_steps.append(('goodtables.validate', {
+            goodtables_options = {
                 'fail_on_error': True,
                 'reports_path':
                     '{}/{}/{}'.format('../output', pipeline_id, 'reports'),
-                'datapackage_reports_path': 'reports'
-            }))
+                'datapackage_reports_path': 'reports',
+            }
+            if 'goodtables' in config:
+                goodtables_options.update({'goodtables': config['goodtables']})
+
+            _post_steps.append(('goodtables.validate', goodtables_options))
 
             _post_steps.append(('dump.to_path', {
                 'out-path': '{}/{}'.format(DOWNLOADS_PATH, pipeline_id)
