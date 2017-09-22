@@ -1,6 +1,7 @@
 from . import (
     spss,
-    csv
+    csv,
+    tsv
 )
 
-__all__ = ['spss', 'csv']
+__all__ = ['spss', 'csv', 'tsv']
