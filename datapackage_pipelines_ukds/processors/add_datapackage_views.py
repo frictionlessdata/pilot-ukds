@@ -12,6 +12,8 @@ param_views = params['views']
 for view_path in param_views:
     with open(view_path) as json_file:
         view_json = json.load(json_file)
+        if type(view_json) is dict:
+            view_json = [view_json]
         for v in view_json:
             dp_views.append(v)
 

@@ -1,0 +1,11 @@
+{
+  "name": "simple-view-bar",
+  "title": "My View Title",
+  "resources": ["my-resource"],
+  "specType": "simple",
+  "spec": {
+    "type": "bar",
+    "group": "date",
+    "series": ["my-column"]
+  }
+}

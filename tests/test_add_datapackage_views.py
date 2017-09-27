@@ -130,3 +130,44 @@ class TestAddDatapackageViewsProcessor(TestBase):
             ]
         }
         self.assertEqual(spew_dp, expected_dp)
+
+    def test_add_datapackage_views_processor_dict(self):
+
+        # input arguments used by our mock `ingest`
+        datapackage = {
+            'name': 'my-datapackage',
+            'resources': []
+        }
+        params = {
+            'views': ['tests/sample_data/sample-view-spec-dict.json']
+        }
+
+        # Path to the processor we want to test
+        processor_dir = \
+            os.path.dirname(datapackage_pipelines_ukds.processors.__file__)
+        processor_path = os.path.join(processor_dir,
+                                      'add_datapackage_views.py')
+
+        # Trigger the processor with our mock `ingest` and capture what it will
+        # returned to `spew`.
+        spew_args, _ = mock_processor_test(processor_path,
+                                           (params, datapackage, []))
+
+        spew_dp = spew_args[0]
+
+        # Asserts for the datapackage
+        expected_dp = {
+            'name': 'my-datapackage',
+            'resources': [],
+            'views': [
+                {
+                    'name': 'simple-view-bar',
+                    'resources': ['my-resource'],
+                    'spec': {'group': 'date', 'series': ['my-column'],
+                             'type': 'bar'},
+                    'specType': 'simple',
+                    'title': 'My View Title'
+                }
+            ]
+        }
+        self.assertEqual(spew_dp, expected_dp)
