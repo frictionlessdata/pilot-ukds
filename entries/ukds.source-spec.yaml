@@ -47,6 +47,8 @@ entries:
         tabulator:
           headers: 1
     oai-id: 852690
+    views:
+      - views/print-coverage-psc.json
 
   us-petitions-tweet-mentions:
     source:

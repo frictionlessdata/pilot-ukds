@@ -1,0 +1,13 @@
+[
+    {
+      "name": "simple-view-bar",
+      "title": "PSC Press Mentions",
+      "resources": ["printmedia-csv"],
+      "specType": "simple",
+      "spec": {
+        "type": "bar",
+        "group": "date",
+        "series": ["cap_n", "g4_n", "serc_n", "cap_t", "g4_t", "serc_t"]
+      }
+    }
+]

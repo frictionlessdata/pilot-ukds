@@ -83,6 +83,11 @@ class Generator(GeneratorBase):
                     'oai_url': source['oai-url']
                 }))
 
+            if 'views' in config:
+                _post_steps.append(('ukds.add_datapackage_views', {
+                    'views': config['views']
+                }))
+
             goodtables_options = {
                 'fail_on_error': True,
                 'reports_path':
