@@ -76,12 +76,14 @@ entries:
         format: spss
     oai-id: 851500
 
-  my-second-entry:  # a local csv resource
+  my-second-entry:  # a local csv resource with a view
     source:
       - url: ../data/my-csv-file.csv
         format: csv
         tabulator:
           headers: 1
+    views:
+      - views/my-views-spec.json
 
   my-multiple-item:  # multiple resources
     source:
@@ -95,3 +97,5 @@ entries:
 Where `oai-url` is the entry point for the OAI service, and `entries` is a collection of resources which we're interested in harvesting from UKDS, and uploading to datahub.io.
 
 If an entry has an `oai-id` property, this will be used to harvest dataset metadata from UKDS to populate the datapackage.
+
+The `views` property is a list of file paths to json files containing [view-spec](https://specs.frictionlessdata.io/views/) compatible views.
