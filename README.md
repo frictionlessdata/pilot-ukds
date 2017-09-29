@@ -5,7 +5,7 @@
 
 An example [Data Package Pipeline](https://github.com/frictionlessdata/datapackage-pipelines/) to harvest data from UKDS, transform, validate, define visualizations, and import into datahub.io. 
 
-As well as the pipeline, this repository maintains a pipeline processor to add [OAI-PMH](http://www.openarchives.org/OAI/openarchivesprotocol.html) dataset metadata to the datapackage: `ukds.add_oai_metadata`. 
+As well as the pipeline, this repository maintains a pipeline processor to add [OAI-PMH](http://www.openarchives.org/OAI/openarchivesprotocol.html) dataset metadata to the datapackage: `ukds.add_oai_metadata`. View specs can be added to a datapackage with the `ukds.add_datapackage_views` processor.
 
 The following pipeline plugins are also used by the pipeline:
 - [datapackage-pipelines-spss](https://github.com/frictionlessdata/datapackage-pipelines-spss): `spss.add_spss`
