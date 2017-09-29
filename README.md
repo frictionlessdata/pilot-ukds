@@ -10,6 +10,7 @@ As well as the pipeline, this repository maintains a pipeline processor to add [
 The following pipeline plugins are also used by the pipeline:
 - [datapackage-pipelines-spss](https://github.com/frictionlessdata/datapackage-pipelines-spss): `spss.add_spss`
 - [datapackage-pipelines-goodtables](https://github.com/frictionlessdata/datapackage-pipelines-goodtables): `goodtables.validate`
+- [datapackage-pipelines-datahub](https://github.com/datahq/datapackage-pipelines-datahub): `datahub.datahub.dump.to_datahub`
 
 The basic flow from the UKDS Reshare resource, to the final datahub.io entry is outlined in the diagram below:
 

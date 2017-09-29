@@ -103,6 +103,8 @@ class Generator(GeneratorBase):
                 'out-path': '{}/{}'.format(DOWNLOADS_PATH, pipeline_id)
             }))
 
+            _post_steps.append(('datahub.dump.to_datahub'))
+
             _steps = _steps + _post_steps
             _steps = steps(*_steps)
 
