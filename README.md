@@ -10,59 +10,11 @@ As well as the pipeline, this repository maintains a pipeline processor to add [
 The following pipeline plugins are also used by the pipeline:
 - [datapackage-pipelines-spss](https://github.com/frictionlessdata/datapackage-pipelines-spss): `spss.add_spss`
 - [datapackage-pipelines-goodtables](https://github.com/frictionlessdata/datapackage-pipelines-goodtables): `goodtables.validate`
-- [datapackage-pipelines-datahub](https://github.com/datahq/datapackage-pipelines-datahub): `datahub.datahub.dump.to_datahub`
+- [datapackage-pipelines-datahub](https://github.com/datahq/datapackage-pipelines-datahub): `datahub.datahub.dump.to_datahub` ([`datahub-cli`](https://github.com/datahq/datahub-cli) is required for this plugin)
 
 The basic flow from the UKDS Reshare resource, to the final datahub.io entry is outlined in the diagram below:
 
-```
-                        +                                                                             +
-                        |                                                                             |
-                        |                                                                             |
- UKDS Reshare           |  UKDS Datapackage Pipeline                                                  |  datahub.io
-                        |                                                                             |
-                        |                  +-----------------------------+                            |
-                        |                  |                             |                            |
-                        |                  |  Entry defined in pipline   |                            |
-                        |                  |  ukds.source-spec.yml       |                            |
-                        |                  |                             |                            |
-                        |                  +-------------+---------------+                            |
-                        |                                |                                            |
-                        |                 +--------------+----------------+                           |
-                        |       CSV       |                               |    SPSS                   |
-                        |                 |                               |                           |
-+--------------------+  |  +--------------v--------------+  +-------------v---------------+           |
-|                    |  |  |                             |  |                             |           |
-|  UKDS open access  |  |  |  datapackage-pipelines.lib  |  |  datapackage-pipeline-spss  |           |
-|  resource file     <-----+   + add_resource            |  |   + add_spss                |           |
-|                    |  |  |   + stream_remote_resource  |  |                             |           |
-+--------------------+  |  |                             |  +-------------+--+------------+           |
-                        |  +--------------+--------------+                |  |                        |
-                        |                 |                               |  +-> tableschema-spss-py  |
-                        |                 +--------------+----------------+                           |
-                        |                                |                                            |
- +-------------------+  |                  +-------------v---------------+                            |
- |                   |  |                  |                             |                            |
- |  UKDS OAI Record  |  |                  |  datapackage-pipeline-ukds  |                            |
- |  Metadata         <---------------------+   + add_oai_metadata        |                            |
- |                   |  |                  |                             |                            |
- +-------------------+  |                  +-------------+---------------+                            |
-                        |                                |                                            |
-                        |              +-----------------v-----------------+                          |
-                        |              |                                   |                          |
-                        |              |  datapackage-pipeline-goodtables  +-------> goodtables-py    |
-                        |              |   + validate                      |                          |
-                        |              |                                   |                          |
-                        |              +-----------------+-----------------+                          |
-                        |                                |                                            |
-                        |                +---------------v----------------+                           |
-                        |                |                                |                           |  +--------------------+
-                        |                |  datapackage-pipeline-datahub  |                           |  |                    |
-                        |                |   + dump_to.datahub            +------------------------------>  datahub.io entry  |
-                        |                |                                |                           |  |                    |
-                        |                +--------------------------------+                           |  +--------------------+
-                        +                                                                             +
-
-```
+![Pipeline flow](https://raw.githubusercontent.com/frictionlessdata/pilot-ukds/master/data/ukds_flow.png)
 
 The source-spec is defined in `/entries/ukds.source-spec.yaml`:
 
