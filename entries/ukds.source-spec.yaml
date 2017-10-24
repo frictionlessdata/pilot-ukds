@@ -118,3 +118,12 @@ entries:
       - url: http://reshare.ukdataservice.ac.uk/851616/2/We_the_People_petition.tab
         format: tsv
     oai-id: 851616
+
+  au-pairing:
+    source:
+      - url: http://reshare.ukdataservice.ac.uk/851656/6/GumtreeAds_AuPairsAnalysis1.xls
+        format: xls
+        tabulator:
+          sheet: 2
+          # skip_rows: 236
+    oai-id: 851656
