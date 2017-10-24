@@ -125,5 +125,8 @@ entries:
         format: xls
         tabulator:
           sheet: 2
-          # skip_rows: 236
+          skip_rows: [237, 292, 348, 402, 458, 511, 564, 618, 673, 726, 779, 832, 886, 937, 990]
+    goodtables:
+      skip_checks:
+        - duplicate-row
     oai-id: 851656
